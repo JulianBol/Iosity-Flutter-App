@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iosity/screens/screens.dart';
 
 void main() => runApp(const MyApp());
 
@@ -7,12 +8,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    
+    return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
       title: 'Iosity',
-      home: Scaffold(
-        body: Center(child: Text('Iosity'))
-      )
+      
+      initialRoute: 'login',
+      routes: {
+        'login': (_) => const LoginScreen(),
+        'home': (_) => const HomeScreen()
+      }
     );
   }
 }
