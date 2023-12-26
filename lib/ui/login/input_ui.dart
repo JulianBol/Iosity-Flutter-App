@@ -21,7 +21,6 @@ class InputUI {
     final TextStyle labelStyle = TextStyle(color: colorBorder);
                   
     return InputDecoration(
-    //  contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
      filled: false,
      enabledBorder: outlineInputBorder,
      focusedBorder: outlineInputBorder,
