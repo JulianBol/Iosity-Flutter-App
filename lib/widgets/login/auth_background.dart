@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 // background de la pantalla de login.
 class AuthBackground extends StatelessWidget {
   
-  const AuthBackground({super.key});
+  final Widget child;
+  const AuthBackground({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,8 @@ class AuthBackground extends StatelessWidget {
       child: Stack(
         children: [
           _ColorBox(),
-          _HeaderIcon()
+          _HeaderIcon(),
+          child
         ],
       )
     );
