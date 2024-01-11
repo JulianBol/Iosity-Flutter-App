@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 NewsResponse newsResponseFromJson(String str) => NewsResponse.fromJson(json.decode(str));
 
@@ -30,12 +32,12 @@ class NewsResponse {
 
 class Article {
     Source source;
-    String author;
-    String title;
+    dynamic author;
+    dynamic title;
     dynamic description;
     String url;
     dynamic urlToImage;
-    DateTime publishedAt;
+    String publishedAt;
     dynamic content;
 
     Article({
@@ -56,7 +58,7 @@ class Article {
         description: json["description"],
         url: json["url"],
         urlToImage: json["urlToImage"],
-        publishedAt: DateTime.parse(json["publishedAt"]),
+        publishedAt: formatDate(json["publishedAt"]),
         content: json["content"],
     );
 
@@ -67,14 +69,14 @@ class Article {
         "description": description,
         "url": url,
         "urlToImage": urlToImage,
-        "publishedAt": publishedAt.toIso8601String(),
+        "publishedAt": publishedAt,
         "content": content,
     };
 }
 
 class Source {
-    Id id;
-    Name name;
+    String? id;
+    String name;
 
     Source({
         required this.id,
@@ -82,40 +84,31 @@ class Source {
     });
 
     factory Source.fromJson(Map<String, dynamic> json) => Source(
-        id: idValues.map[json["id"]]!,
-        name: nameValues.map[json["name"]]!,
+        id: json["id"],
+        name: json["name"],
     );
 
     Map<String, dynamic> toJson() => {
-        "id": idValues.reverse[id],
-        "name": nameValues.reverse[name],
+        "id": id,
+        "name": name,
     };
 }
 
-enum Id {
-    GOOGLE_NEWS
-}
+String formatDate(String date) {
 
-final idValues = EnumValues({
-    "google-news": Id.GOOGLE_NEWS
-});
+    initializeDateFormatting('es_ES', null);
+      
+    DateTime objectDate = DateTime.parse(date);
 
-enum Name {
-    GOOGLE_NEWS
-}
+    final DateFormat formatterWeekDay = DateFormat.E('es');
+    final DateFormat formatterDay = DateFormat.d('es');
+    final DateFormat formatterMonth = DateFormat.MMM('es');
+    final DateFormat formatterYear = DateFormat.y('es');
 
-final nameValues = EnumValues({
-    "Google News": Name.GOOGLE_NEWS
-});
+    String weekDay = formatterWeekDay.format(objectDate);
+    String day = formatterDay.format(objectDate);
+    String month = formatterMonth.format(objectDate);
+    String year = formatterYear.format(objectDate);
 
-class EnumValues<T> {
-    Map<String, T> map;
-    late Map<T, String> reverseMap;
-
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-        reverseMap = map.map((k, v) => MapEntry(v, k));
-        return reverseMap;
-    }
+    return '$weekDay $day $month $year';
 }
