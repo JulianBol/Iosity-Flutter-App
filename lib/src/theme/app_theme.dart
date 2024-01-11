@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
 
-  final Color _primaryColor = const Color.fromARGB(255, 224, 14, 14);
+  final Color _primaryColor = Colors.blue;
   
   ThemeData getTheme() => ThemeData(
 
     // Establece Tema Oscuro
-    // brightness: Brightness.dark,
+    brightness: Brightness.dark,
     colorSchemeSeed: _primaryColor,
-    scaffoldBackgroundColor: Colors.black87,
+
 
     // En este caso, se ha utilizado la propiedad < splashFactory > 
     // en el tema general para especificar la fábrica de salpicaduras
     // que debería utilizarse. Se refiere a la ANIMACIÓN que 
     // se expande desde el punto de contacto cuando se interactúa con el widget.
-    splashFactory: NoSplash.splashFactory,
+    splashFactory: InkSplash.splashFactory,
 
     // Se utiliza para ESTABLECER el COLOR de resaltado o realce cuando 
     // un usuario toca un área interactiva. En el contexto de InkWell, 
@@ -27,11 +27,19 @@ class AppTheme {
 
 
     // Tema general de < BottomNavigationBar >
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: _primaryColor,
       backgroundColor: Colors.transparent,
-      unselectedItemColor: Color.fromARGB(191, 213, 222, 239),
-    )
+      unselectedItemColor: const Color.fromARGB(191, 213, 222, 239),
+    ),
 
+
+    // Tema general de < CircularProgressIndicator >
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: _primaryColor
+    )
     
   );
+
+  Color get primaryColor => _primaryColor;
 }
