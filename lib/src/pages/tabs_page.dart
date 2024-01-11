@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:iosity/src/pages/pages.dart';
 
 class TabsPages extends StatelessWidget {
   const TabsPages({super.key});
@@ -46,7 +47,7 @@ class _Navigation extends StatelessWidget {
     final navigationModel = Provider.of<_NavigationModel>(context);
 
     return BottomNavigationBar(
-
+      elevation: 0,
       onTap: (value) => navigationModel.updatePagebyButton(value),
       currentIndex: navigationModel.actualPage,
       
@@ -91,7 +92,7 @@ class _Pages extends StatelessWidget {
       onPageChanged: (value) => navigationModel.actualPage = value,
 
       children: [
-        Container(color: Colors.red),
+        const Tab1Page(),
         Container(color: Colors.green),
         Container(color: Colors.blue)
       ],
