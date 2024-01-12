@@ -96,14 +96,14 @@ class Source {
 
 String formatDate(String date) {
 
-    initializeDateFormatting('es_ES', null);
+    initializeDateFormatting('en_US', null);
       
     DateTime objectDate = DateTime.parse(date);
 
-    final DateFormat formatterWeekDay = DateFormat.E('es');
-    final DateFormat formatterDay = DateFormat.d('es');
-    final DateFormat formatterMonth = DateFormat.MMM('es');
-    final DateFormat formatterYear = DateFormat.y('es');
+    final DateFormat formatterWeekDay = DateFormat.E('en_US');
+    final DateFormat formatterDay = DateFormat.d('en_US');
+    final DateFormat formatterMonth = DateFormat.MMM('en_US');
+    final DateFormat formatterYear = DateFormat.y('en_US');
 
     String weekDay = formatterWeekDay.format(objectDate);
     String day = formatterDay.format(objectDate);
