@@ -91,10 +91,10 @@ class _Pages extends StatelessWidget {
       controller: navigationModel.pageController,
       onPageChanged: (value) => navigationModel.actualPage = value,
 
-      children: [
-        const Tab1Page(),
-        Container(color: Colors.green),
-        Container(color: Colors.blue)
+      children: const [
+        Tab1Page(),
+        Tab2Page(),
+        Tab3Page()
       ],
     );
   }
